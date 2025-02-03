@@ -1,0 +1,206 @@
+/* Reinicio básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #222;
+    
+}
+
+/* Navbar principal */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+    background-color: #111;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: auto;
+    gap: 10px; /* Espaciado entre elementos */
+    margin: 0 100px; /* Asegura que el contenedor esté centrado */
+    padding: 0; /* Evita espacio adicional */
+}
+
+.nav-links li {
+    position: relative; /* Necesario para posicionar el submenú */
+    text-align: center; /* Centra el texto del enlace principal */
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #00bcd4; /* Efecto hover con color elegante */
+}
+
+.navbar .logo img {
+    width: 55px;  /* Ancho en píxeles */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin: auto; /* Centra horizontalmente  */
+}
+
+/* Submenú */
+.submenu {
+    list-style: none;
+    position: absolute;
+    top: 100%; /* Mantiene el submenú justo debajo */
+    left: 0; /* Alinea el submenú con el borde izquierdo del elemento padre */
+    background-color: #333; /* Fondo del submenú */
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0; /* Sin espacio adicional */
+    margin: 0;
+    min-width: 100%; /* Asegura que tenga al menos el mismo ancho que el padre */
+}
+.submenu li {
+    width: 100%; /* Asegura que cada elemento ocupe el ancho completo */
+}
+
+.submenu li a {
+    font-size: 13px;
+    text-align: left; /* Alinea el texto a la izquierda */
+    color: #fff;
+    padding: 10px 20px; /* Más espacio horizontal */
+    display: block;
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    white-space: nowrap; /* Evita quiebres de texto */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenu li a:hover {
+    background-color: #00bcd4; /* Color uniforme al pasar el mouse */
+    color: #222; /* Contraste con el fondo */
+}
+
+/* Mostrar submenú al pasar el mouse */
+.nav-links li:hover > .submenu {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out; /* Efecto de aparición */
+}
+
+/* Animación del submenú */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Submenú inicia arriba */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Submenú vuelve a su posición normal */
+    }
+}
+
+/*submenu */
+.submenu2 {
+    list-style: none;
+    position: absolute;
+    top: 100%; /* Mantiene el submenú justo debajo */
+    left: 0; /* Alinea el submenú con el borde izquierdo del elemento padre */
+    background-color: #333; /* Fondo del submenú */
+    border-radius: 5px;
+    overflow: hidden;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 0; /* Sin espacio adicional */
+    margin: 0;
+    min-width: 100%; /* Asegura que tenga al menos el mismo ancho que el padre */
+}
+.submenu2 li {
+    width: 100%; /* Asegura que cada elemento ocupe el ancho completo */
+}
+
+.submenu2 li a {
+    font-size: 13px;
+    text-align: left; /* Alinea el texto a la izquierda */
+    color: #fff;
+    padding: 10px 20px; /* Más espacio horizontal */
+    display: block;
+    width: 100%; /* Ocupa el ancho completo del contenedor */
+    white-space: nowrap; /* Evita quiebres de texto */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenu2 li a:hover {
+    background-color: #00bcd4; /* Color uniforme al pasar el mouse */
+    color: #222; /* Contraste con el fondo */
+}
+
+/* Mostrar submenú al pasar el mouse */
+.nav-links li:hover > .submenu2 {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out; /* Efecto de aparición */
+}
+
+.hero {
+    text-align: center;
+    padding-top: 100px;
+    background: linear-gradient(to bottom, #000, #222);
+    padding-bottom: 50px;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 20px 0;
+    color: white;
+}
+
+.buttons {
+    margin: 20px 0;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn.info {
+    background-color: #007aff;
+    color: #fff;
+}
+
+.btn.info:hover {
+    background-color: #005bb5;
+}
+
+.btn.buy {
+    background-color: transparent;
+    color: #007aff;
+    border: 1px solid #007aff;
+}
+
+.btn.buy:hover {
+    background-color: #007aff;
+    color: #fff;
+}
+
+.phone-image img {
+    margin-top: 20px;
+    max-width: 80%;
+    height: auto;
+    filter: drop-shadow(0 0 20px #00bcd4);
+}
