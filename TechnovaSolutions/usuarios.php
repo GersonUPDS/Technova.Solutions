@@ -61,8 +61,8 @@ if (!verificarPermiso('Gestionar usuarios')) {
                     <a href="#">Registrar ventas</a>
                     <?php endif; ?>
                     <ul class="submenu">
-                        <li><a href="usuarios.php">Ventas</a></li>
-                        <li><a href="tabla_Roles.html">Promociones</a></li>
+                        <li><a href="realizar_venta.php">Ventas</a></li>
+                        <li><a href="#">Promociones</a></li>
                         
                     </ul>
                 </li>
