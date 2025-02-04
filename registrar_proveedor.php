@@ -1,0 +1,133 @@
+<?php
+// Conexión a la base de datos
+$conn = new mysqli("localhost", "root", "", "technova_solutions");
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Procesar el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST["nombre"];
+
+    // Insertar proveedor en la base de datos
+    $sql = "INSERT INTO proveedor (nombre) VALUES ('$nombre')";
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "<script>alert('Proveedor registrado con éxito.');</script>";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+}
+
+$conn->close();
+?>
+
+<?php
+//Una página protegida que muestra contenido según el rol.
+require 'auth.php';
+autenticarUsuario();
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página TechNova Solutions</title>
+    <link rel="stylesheet" href="tablas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+          <img src="logo2.png" alt="TechNova">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="dashboard.php">Inicio</a></li>
+
+                <li>
+                    <?php if (verificarPermiso('Gestionar usuarios')): ?>
+                    <a href="#">Gestionar Usuarios</a>
+                    <?php endif; ?>
+                    <ul class="submenu">
+                        <li><a href="usuarios.php">Gestionar Usuarios</a></li>
+                        <li><a href="#">Roles</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <?php if (verificarPermiso('Gestionar Inventario')): ?>
+                    <a href="#">Gestionar Inventario</a>
+                    <?php endif; ?>
+                    <ul class="submenu">
+                        <li><a href="lista_productos.php">Productos</a></li>
+                        <li><a href="registrar_productos.php">Compras</a></li>
+                        <li><a href="registrar_proveedor.php">Proveedores</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <?php if (verificarPermiso('Ver reportes')): ?>
+                    <a href="#">Ver reportes</a>
+                    <?php endif; ?>
+                    <ul class="submenu">
+                        <li><a href="#">Detalle de Ventas</a></li>
+                        <li><a href="lista_proveedores.php">Lista de Proveedores</a></li>
+                        
+                    </ul>
+                </li>
+                <li>
+                    <?php if (verificarPermiso('Registrar ventas')): ?>
+                    <a href="#">Registrar ventas</a>
+                    <?php endif; ?>
+                    <ul class="submenu">
+                        <li><a href="realizar_venta.php">Ventas</a></li>
+                        <li><a href="#">Promociones</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a href="#">Soporte</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>TechNova Solutions</h1>
+        <p><h2>Bienvenido: <?php echo $_SESSION['role']; ?></h2> </p>
+    </section>
+    <!-- Hero Section -->
+
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2><i class="fas fa-edit"></i> Registrar Proveedores</h2>
+            <form action="registrar_proveedor.php" method="POST">
+                <table>
+                    <tr>
+                        <td>Nombre del Proveedor:</td>
+                        <td><input type="text" name="nombre" required></td>
+                    </tr>
+                    <tr>
+                    <td>Estado:</td>
+                        <td>
+                            <select name="Estado" required>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="submit" value="Registrar"></td>
+                        <td><input type="reset" value="Limpiar"></td>
+                    </tr>
+                    
+                    <a href="registrar_productos.php">Ir a Registrar Productos</a>
+                </table>
+            </form>
+        </div>
+    </div>
+
+    
